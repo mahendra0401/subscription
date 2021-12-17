@@ -3,11 +3,11 @@
 Instead of the default functionality of Open edX to provide course access to learners, make it subscription based
 
 ## App Configuration
-* Add `subscription` django app at `edx-platform/common/djangoapps` directory
+* Add `subscription` Django app at `edx-platform/common/djangoapps` directory
 * Add `custom-theme` at `edx-platform/themes` directory
-* Ensure comprehesive theme enabled. Use `custom-theme`
+* Ensure comprehensive theme enabled. Use `custom-theme`
 * Add `common.djangoapps.subscription.apps.SubscriptionConfig` to the INSTALLED_APPS (i.e. in `edx-platform/lms/envs/common.py`)
-* Add to lms url (i.e. in `edx-platform/lms/urls.py`): 
+* Add to LMS URL (i.e. in `edx-platform/lms/urls.py`): 
 ```python
 urlpatterns += [
     url(r'^', include('common.djangoapps.subscription.urls')),
@@ -52,6 +52,6 @@ def _has_access_course(user, action, courselike):
 ./manage.py lms check_subscription --settings=devstack_docker    - for devstack setup
 ```
 ## Use Subscription
-* Admin can create subscription from admin panel `/admin/subscription/subscription/`
-* Admin can see all activated subscriptions from admin panel `/admin/subscription/usersubscription/`
-* Users can see all subscription at `/subscriptions`
+* Admin can create a subscription from the admin panel `/admin/subscription/subscription/`
+* Admin can see all activated subscriptions the from admin panel `/admin/subscription/usersubscription/`
+* Users can see all subscriptions at `/subscriptions`
