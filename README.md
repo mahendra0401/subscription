@@ -18,7 +18,7 @@ urlpatterns += [
 REGISTRATION_EXTENSION_FORM = "common.djangoapps.subscription.forms.UserInfoForm"
 ```
 * Apply migration
-* Add below changes into the (`lms/djangoapps/courseware/access.py`): 
+* Add below changes into the (`lms/djangoapps/courseware/access.py`) inside `def can_load():`: 
 ```python
 def _has_access_course(user, action, courselike):
     @function_trace('can_load')
@@ -46,7 +46,11 @@ def _has_access_course(user, action, courselike):
         return _can_enroll_courselike(user, courselike)
 ```
 * Restart your Open edX processes(lms and cms/studio)
-
+* Setup and run daily cronjob using below command to update subscription: 
+```python
+./manage.py lms check_subscription --settings=production    - for production setup
+./manage.py lms check_subscription --settings=devstack_docker    - for devstack setup
+```
 ## Use Subscription
 * Admin can create subscription from admin panel `/admin/subscription/subscription/`
 * Admin can see all activated subscriptions from admin panel `/admin/subscription/usersubscription/`
